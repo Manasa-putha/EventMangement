@@ -1,0 +1,82 @@
+<mat-card>
+  <mat-card-header>
+    <h1>View and Manage Events</h1>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-accordion multi="true">
+      <ng-container *ngFor="let event of events; trackBy: trackByEventId">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ event.eventName }}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{ event.date | date }} at {{ event.time }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>{{ event.description }}</p>
+          <p>Location: {{ event.location }}</p>
+          <!-- <p>Expenses: {{ event.budget?.expenses || 0 }}</p>
+          <p>Revenue: {{ event.budget?.revenue || 0 }}</p> -->
+          <p>Expenses: {{ event.budget?.expenses }}</p>
+          <p>Revenue: {{ event.budget?.revenue }}</p>
+
+         
+          <ng-container *ngIf="isAdmin">
+            <ng-container *ngIf="event.isEditing">
+              <form [formGroup]="eventForm" (ngSubmit)="saveEvent(event)">
+                <mat-form-field>
+                  <mat-label>Event Name</mat-label>
+                  <input matInput formControlName="name">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Date</mat-label>
+                  <input matInput formControlName="date" type="date" [min]="minDate">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Time</mat-label>
+                  <input matInput formControlName="time" type="time">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Location</mat-label>
+                  <input matInput formControlName="location">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Description</mat-label>
+                  <textarea matInput formControlName="description"></textarea>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Expenses</mat-label>
+                  <input matInput formControlName="expenses" type="number">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Revenue</mat-label>
+                  <input matInput formControlName="revenue" type="number">
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit">Save</button>
+                <button mat-raised-button color="warn" (click)="cancelEdit(event)">Cancel</button>
+              </form>
+            </ng-container>
+            <ng-container *ngIf="!event.isEditing">
+              <button mat-raised-button color="primary" (click)="editEvent(event)">Edit</button>
+              <button mat-raised-button color="warn" (click)="deleteEvent(event.id)">Delete</button>
+            </ng-container>
+          </ng-container>
+
+          
+          <ng-container *ngIf="!isAdmin">
+            <ng-container *ngIf="!event.isRegistered">
+              <button mat-raised-button color="primary" (click)="registerForEvent(event.id)">Register</button>
+            </ng-container>
+            <ng-container *ngIf="event.isRegistered">
+              <p>You are registered for this event.</p>
+            </ng-container>
+          </ng-container>
+
+         
+          <button mat-raised-button color="accent" [routerLink]="['/guest-management', event.id]">Manage Guests</button>
+        </mat-expansion-panel>
+      </ng-container>
+    </mat-accordion>
+  </mat-card-content>
+</mat-card>

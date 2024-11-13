@@ -1,0 +1,25 @@
+
+   <div>
+    <form [formGroup]="guestForm" (ngSubmit)="addGuest()">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="userName">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Contact Info</mat-label>
+        <input matInput formControlName="contactInfo">
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Add Guest</button>
+    </form>
+  
+    <mat-list>
+      <mat-list-item *ngFor="let guest of guests">
+        <h4 mat-line>{{ guest.userName }}</h4>
+        <p mat-line>{{ guest.contactInfo }}</p>
+        <button mat-icon-button color="warn" (click)="deleteGuest(guest.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  

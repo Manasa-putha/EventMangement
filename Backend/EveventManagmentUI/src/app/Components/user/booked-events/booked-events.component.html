@@ -1,0 +1,39 @@
+
+   <div *ngIf="bookedEvents.length > 0; else noEvents">
+    <div *ngFor="let event of bookedEvents">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Event Name :{{ event.eventName }}</mat-card-title>
+          <mat-card-subtitle>Event Date :{{ event.date | date }} at {{ event.time }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Location: {{ event.location }}</p>
+          <p>Description: {{ event.description }}</p>
+          <div *ngIf="event.budget">
+            <p>Expenses: {{ event.budget.expenses }}</p>
+            <p>Revenue: {{ event.budget.revenue }}</p>
+          </div>
+          <div *ngIf="event.guests && event.guests.length > 0">
+            <p>Guests:</p>
+            <ul>
+              <li *ngFor="let guest of event.guests">
+                Booked by
+                <div>
+                    <span>
+                    <div>
+                       <p>User Name - {{ guest.userName }}</p> 
+                       <p>Mobile NUmber-{{guest.phoneNumber}}</p>
+                    </div>
+                </span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <ng-template #noEvents>
+    <p>No booked events found.</p>
+  </ng-template>
+  

@@ -1,0 +1,45 @@
+<mat-card>
+    <mat-card-header>
+      <h1>Add New Event</h1>
+    </mat-card-header>
+    <mat-card-content [formGroup]="newEventForm">
+      <mat-form-field>
+        <mat-label>Event Name</mat-label>
+        <input matInput formControlName="eventName">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date"[min]="minDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <!-- <mat-form-field>
+        <mat-label>Time</mat-label>
+        <input matInput type="time" formControlName="time" >
+      </mat-form-field> -->
+      <mat-form-field>
+        <mat-label>Time (hh:mm am/pm)</mat-label>
+        <input matInput formControlName="time" placeholder="hh:mm am/pm">
+        <mat-error *ngIf="timeInvalid">Please enter a valid time in hh:mm am/pm format.</mat-error>
+      </mat-form-field>
+     
+      <mat-form-field>
+        <mat-label>Location</mat-label>
+        <input matInput formControlName="location">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Expenses</mat-label>
+        <input matInput formControlName="expenses" type="number">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Revenue</mat-label>
+        <input matInput formControlName="revenue" type="number">
+      </mat-form-field>
+      <button mat-raised-button color="primary" [disabled]="!newEventForm.valid" (click)="addNewEvent()">Add Event</button>
+    </mat-card-content>
+  </mat-card>
+  

@@ -1,0 +1,82 @@
+.mat-card-content{
+    /* background-color: blueviolet; */
+
+}
+
+:host {
+  display: block;
+  padding: 1rem 0;
+}
+
+mat-form-field {
+  width: 500px;
+  margin: 0 auto;
+  display: block;
+}
+
+/* mat-card {
+  width: max-content;
+  margin-bottom: 1rem;
+} */
+mat-card .mat-card-content {
+    font-size: 1.5rem;
+  }
+
+  mat-card mat-accordion .mat-panel-title {
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    font-weight: 500;
+    color: #69f0db;
+  }
+
+  mat-panel-description {
+    font-style: italic;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+  }
+
+  table {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+table .mat-mdc-header-cell {
+      font-style: italic;
+      font-size: 1.2rem;
+      font-family: cursive;
+    background-color: rgb(23, 57, 228);
+    }
+
+    .mat-mdc-cell {
+      font-size: 1.2rem;
+    }
+  
+
+/* Add styles to your component's SCSS file */
+.table-row :hover {
+    background-color: #f1f1f1; 
+  }
+
+
+.clickable-cell {
+  text-decoration: none;}
+  :hover {
+    color: rgb(0, 88, 139); 
+  }
+  .clickable-cell:hover{  cursor: pointer;
+  color: #69f0aee8;
+}
+
+.mat-mdc-form-field-flex {
+  background-color: darkorchid !important;
+  color: black;
+}
+.search-form-field {
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+  mat-label {
+    color: #04115a;
+    font-weight: bold;
+    font-style: italic;
+  }
+
